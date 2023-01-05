@@ -1,0 +1,19 @@
+extends layout
+  
+block content
+  h1 Uploaded Images
+  
+
+  each image in items
+    .images
+      img(alt="images" src="data:image/"+image.img.contentType + ";base64," + image.img.data.toString('base64'))
+      h5 #{image.author} 
+    
+  -var n = 1;
+  ul.pagination
+    while n < page_count+1
+      li
+        a(href="?page="+n)=n++     
+    
+
+  
