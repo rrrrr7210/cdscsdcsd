@@ -1,9 +1,13 @@
 
 
-
 const fileInput = document.querySelector("#imageFileInput");
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
+const cropRadio = document.getElementById("cropRadio")
+const filters = document.getElementById("filters")
+const flipps = document.getElementById("flips")
+const cropImg = document.getElementById("cropImg")
+const croppp = document.querySelector(".croppp")
 
 
 const brightnessInput = document.querySelector("#brightness");
@@ -103,6 +107,11 @@ sepiaInput.addEventListener("change", () =>
 
 // FELTÖLTÉS
 
+
+/* var container = document.querySelector('.img-container');
+  var imgg = container.getElementsByTagName('img').item(0); */
+  /* imgg.src = image.src */
+
 fileInput.addEventListener("change", () => {
   image = new Image();
 
@@ -112,25 +121,65 @@ fileInput.addEventListener("change", () => {
   });
 
   image.src = URL.createObjectURL(fileInput.files[0]);
+  
 });
 
 resetSettings();
 
+// RADIO BTN
+
+function handleRadioClick() {
+  
+  if (cropRadio.checked) {
+    cropfunc()
+    document.getElementById('canvas').style.display="none";
+    for (let element of document.getElementsByClassName("cropper-container")){
+      element.style.display="block";
+   }  
+  } else {
+    document.getElementById('canvas').style.display="block";
+    for (let element of document.getElementsByClassName("cropper-container")){
+      element.style.display="none";
+   }  
+  }
+
+  if(filters.checked){
+    document.getElementById('filtersId').style.display="block";
+  }else{
+    document.getElementById('filtersId').style.display="none";
+  }
+
+  if(flipps.checked){
+    document.getElementById('flipps').style.display="block";
+  }else{
+    document.getElementById('flipps').style.display="none";
+  }
+}
+
+const radioButtons = document.querySelectorAll('input[name="optionRadio"]');
+radioButtons.forEach(radio => {
+  radio.addEventListener('change', handleRadioClick);
+});
+
 // VÁGÁS
-
-document.getElementById("cropBtn").addEventListener("click", cropFunction);
-
-
-function cropFunction(){
-  const cropper = new Cropper(image,{
+function cropfunc(){
+  cropImg.src = image.src
+  const cropper = new Cropper(cropImg, {
     aspectRatio: 1,
     viewMode: 0,
   });
-  var croppedImage = cropper.getCroppedCanvas().toDataURL("image/png")
 
-  image.src = croppedImage;
+  document.getElementById("cropBtn").addEventListener('click',
+  function(){
+    var croppedimg = cropper.getCroppedCanvas().toDataURL("image/png");
+
+    /* document.getElementById("output").src = croppedimg */
+    image.src = croppedimg
+    renderImage()
+    cropRadio.checked=false;
+    handleRadioClick()
+  })
 }
-
 
 // LETÖLTÉS
 let download = document.getElementById("download");
@@ -185,7 +234,7 @@ function flipImage(){
 
 
 // ÁNYÉKOK
-let arnyekok = document.querySelectorAll(".arnyekok input[type='range']");
+/* let arnyekok = document.querySelectorAll(".arnyekok input[type='range']");
 arnyekok.forEach( slider => {
 slider.addEventListener("click", shadowSlider);
 
@@ -194,7 +243,7 @@ function shadowSlider(){
     image.style.filter= `drop-shadow(${arnyek.value}px ${arnyek1.value}px ${arnyek2.value}px ${coloris.value})`;
     
 }
-});
+}); */
 
 
 
@@ -221,37 +270,16 @@ $(document).ready(function(){
           console.log(err);
         }
       })
-   
-
-      
-    
-   
-   
-   /*  
-   
-
-    console.log(base64)
-    console.log(base64)
-    */
-    /* var request = new XMLHttpRequest();
-    request.open("POST", "/images/save/", true);
-    request.setRequestHeader('Content-Type', 'multipart/form-data');
-    var data = new FormData();
-    
-    data.append("image", blobUtil, "imagename");
-    request.send(data); */
   });
 });
 
-const img = document.querySelector("#someImage");
 
 
-    var link = document.getElementById("link");
-    link.addEventListener('click', function(){
-      img.src = canvas.toDataURL("image/png");
-    });
 
 
+
+
+  
 
 
 

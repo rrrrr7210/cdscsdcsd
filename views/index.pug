@@ -1,364 +1,91 @@
 extends layout
 
 block content
-  .croppp 
+  .container2
+    .btn-group#toggleButtons(data-toggle='buttons')
+        input#option(type='radio' name='optionRadio' autocomplete='off')
+        span IMPORTÁLÁS
 
-    .row
-      .col-md-9
-        // <h3>Demo:</h3>
-        .img-container
-          img(src='https://fengyuanchen.github.io/cropperjs/images/picture.jpg' alt='Picture')
-      .col-md-3
-        // <h3>Preview:</h3>
-        .docs-preview.clearfix
-          .img-preview.preview-lg
-          .img-preview.preview-md
-          .img-preview.preview-sm
-          .img-preview.preview-xs
-        // <h3>Data:</h3>
-        .docs-data
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataX') X
-            input#dataX.form-control(type='text' placeholder='x')
-            span.input-group-addon px
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataY') Y
-            input#dataY.form-control(type='text' placeholder='y')
-            span.input-group-addon px
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataWidth') Width
-            input#dataWidth.form-control(type='text' placeholder='width')
-            span.input-group-addon px
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataHeight') Height
-            input#dataHeight.form-control(type='text' placeholder='height')
-            span.input-group-addon px
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataRotate') Rotate
-            input#dataRotate.form-control(type='text' placeholder='rotate')
-            span.input-group-addon deg
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataScaleX') ScaleX
-            input#dataScaleX.form-control(type='text' placeholder='scaleX')
-          .input-group.input-group-sm
-            label.input-group-addon(for='dataScaleY') ScaleY
-            input#dataScaleY.form-control(type='text' placeholder='scaleY')
-    #actions.row
-      .col-md-9.docs-buttons
-        // <h3>Toolbar:</h3>
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='setDragMode' data-option='move' title='Move')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.setDragMode("move")')
-              span.fa.fa-arrows
-          button.btn.btn-primary(type='button' data-method='setDragMode' data-option='crop' title='Crop')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.setDragMode("crop")')
-              span.fa.fa-crop
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='zoom' data-option='0.1' title='Zoom In')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.zoom(0.1)')
-              span.fa.fa-search-plus
-          button.btn.btn-primary(type='button' data-method='zoom' data-option='-0.1' title='Zoom Out')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.zoom(-0.1)')
-              span.fa.fa-search-minus
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='move' data-option='-10' data-second-option='0' title='Move Left')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.move(-10, 0)')
-              span.fa.fa-arrow-left
-          button.btn.btn-primary(type='button' data-method='move' data-option='10' data-second-option='0' title='Move Right')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.move(10, 0)')
-              span.fa.fa-arrow-right
-          button.btn.btn-primary(type='button' data-method='move' data-option='0' data-second-option='-10' title='Move Up')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.move(0, -10)')
-              span.fa.fa-arrow-up
-          button.btn.btn-primary(type='button' data-method='move' data-option='0' data-second-option='10' title='Move Down')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.move(0, 10)')
-              span.fa.fa-arrow-down
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='rotate' data-option='-45' title='Rotate Left')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.rotate(-45)')
-              span.fa.fa-rotate-left
-          button.btn.btn-primary(type='button' data-method='rotate' data-option='45' title='Rotate Right')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.rotate(45)')
-              span.fa.fa-rotate-right
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='scaleX' data-option='-1' title='Flip Horizontal')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.scaleX(-1)')
-              span.fa.fa-arrows-h
-          button.btn.btn-primary(type='button' data-method='scaleY' data-option='-1' title='Flip Vertical')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.scaleY(-1)')
-              span.fa.fa-arrows-v
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='crop' title='Crop')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.crop()')
-              span.fa.fa-check
-          button.btn.btn-primary(type='button' data-method='clear' title='Clear')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.clear()')
-              span.fa.fa-remove
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='disable' title='Disable')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.disable()')
-              span.fa.fa-lock
-          button.btn.btn-primary(type='button' data-method='enable' title='Enable')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.enable()')
-              span.fa.fa-unlock
-        .btn-group
-          button.btn.btn-primary(type='button' data-method='reset' title='Reset')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.reset()')
-              span.fa.fa-refresh
-          label.btn.btn-primary.btn-upload(for='inputImage' title='Upload image file')
-            input#inputImage.sr-only(type='file' name='file' accept='.jpg,.jpeg,.png,.gif,.bmp,.tiff')
-            span.docs-tooltip(data-toggle='tooltip' title='Import image with Blob URLs')
-              span.fa.fa-upload
-          button.btn.btn-primary(type='button' data-method='destroy' title='Destroy')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.destroy()')
-              span.fa.fa-power-off
-        .btn-group.btn-group-crop
-          button.btn.btn-success(type='button' data-method='getCroppedCanvas' data-option='{ "maxWidth": 4096, "maxHeight": 4096 }')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.getCroppedCanvas({ maxWidth: 4096, maxHeight: 4096 })')
-              | Get Cropped Canvas
-          button.btn.btn-success(type='button' data-method='getCroppedCanvas' data-option='{ "width": 160, "height": 90 }')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.getCroppedCanvas({ width: 160, height: 90 })')
-              | 160&times;90
-          button.btn.btn-success(type='button' data-method='getCroppedCanvas' data-option='{ "width": 320, "height": 180 }')
-            span.docs-tooltip(data-toggle='tooltip' title='cropper.getCroppedCanvas({ width: 320, height: 180 })')
-              | 320&times;180
-        // Show the cropped image in modal
-        #getCroppedCanvasModal.modal.fade.docs-cropped(role='dialog' aria-hidden='true' aria-labelledby='getCroppedCanvasTitle' tabindex='-1')
-          .modal-dialog
-            .modal-content
-              .modal-header
-                h5#getCroppedCanvasTitle.modal-title Cropped
-                button.close(type='button' data-dismiss='modal' aria-label='Close')
-                  span(aria-hidden='true') &times;
-              .modal-body
-              .modal-footer
-                button.btn.btn-default(type='button' data-dismiss='modal') Close
-                a#download.btn.btn-primary(href='javascript:void(0);' download='cropped.jpg') Download
-        // /.modal
-        button.btn.btn-secondary(type='button' data-method='getData' data-option='' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.getData()')
-            | Get Data
-        button.btn.btn-secondary(type='button' data-method='setData' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.setData(data)')
-            | Set Data
-        button.btn.btn-secondary(type='button' data-method='getContainerData' data-option='' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.getContainerData()')
-            | Get Container Data
-        button.btn.btn-secondary(type='button' data-method='getImageData' data-option='' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.getImageData()')
-            | Get Image Data
-        button.btn.btn-secondary(type='button' data-method='getCanvasData' data-option='' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.getCanvasData()')
-            | Get Canvas Data
-        button.btn.btn-secondary(type='button' data-method='setCanvasData' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.setCanvasData(data)')
-            | Set Canvas Data
-        button.btn.btn-secondary(type='button' data-method='getCropBoxData' data-option='' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.getCropBoxData()')
-            | Get Crop Box Data
-        button.btn.btn-secondary(type='button' data-method='setCropBoxData' data-target='#putData')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.setCropBoxData(data)')
-            | Set Crop Box Data
-        button.btn.btn-secondary(type='button' data-method='moveTo' data-option='0')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.moveTo(0)')
-            | Move to [0,0]
-        button.btn.btn-secondary(type='button' data-method='zoomTo' data-option='1')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.zoomTo(1)')
-            | Zoom to 100%
-        button.btn.btn-secondary(type='button' data-method='rotateTo' data-option='180')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.rotateTo(180)')
-            | Rotate 180&deg;
-        button.btn.btn-secondary(type='button' data-method='scale' data-option='-2' data-second-option='-1')
-          span.docs-tooltip(data-toggle='tooltip' title='cropper.scale(-2, -1)')
-            | Scale (-2, -1)
-        textarea#putData.form-control(rows='1' placeholder='Get data to here or set data with this value')
-      // /.docs-buttons
-      .col-md-3.docs-toggles
-        // <h3>Toggles:</h3>
-        .btn-group.d-flex.flex-nowrap(data-toggle='buttons')
-          label.btn.btn-primary.active
-            input#aspectRatio1.sr-only(type='radio' name='aspectRatio' value='1.7777777777777777')
-            span.docs-tooltip(data-toggle='tooltip' title='aspectRatio: 16 / 9')
-              | 16:9
-          label.btn.btn-primary
-            input#aspectRatio2.sr-only(type='radio' name='aspectRatio' value='1.3333333333333333')
-            span.docs-tooltip(data-toggle='tooltip' title='aspectRatio: 4 / 3')
-              | 4:3
-          label.btn.btn-primary
-            input#aspectRatio3.sr-only(type='radio' name='aspectRatio' value='1')
-            span.docs-tooltip(data-toggle='tooltip' title='aspectRatio: 1 / 1')
-              | 1:1
-          label.btn.btn-primary
-            input#aspectRatio4.sr-only(type='radio' name='aspectRatio' value='0.6666666666666666')
-            span.docs-tooltip(data-toggle='tooltip' title='aspectRatio: 2 / 3')
-              | 2:3
-          label.btn.btn-primary
-            input#aspectRatio5.sr-only(type='radio' name='aspectRatio' value='NaN')
-            span.docs-tooltip(data-toggle='tooltip' title='aspectRatio: NaN')
-              | Free
-        .btn-group.d-flex.flex-nowrap(data-toggle='buttons')
-          label.btn.btn-primary.active
-            input#viewMode0.sr-only(type='radio' name='viewMode' value='0' checked='')
-            span.docs-tooltip(data-toggle='tooltip' title='View Mode 0')
-              | VM0
-          label.btn.btn-primary
-            input#viewMode1.sr-only(type='radio' name='viewMode' value='1')
-            span.docs-tooltip(data-toggle='tooltip' title='View Mode 1')
-              | VM1
-          label.btn.btn-primary
-            input#viewMode2.sr-only(type='radio' name='viewMode' value='2')
-            span.docs-tooltip(data-toggle='tooltip' title='View Mode 2')
-              | VM2
-          label.btn.btn-primary
-            input#viewMode3.sr-only(type='radio' name='viewMode' value='3')
-            span.docs-tooltip(data-toggle='tooltip' title='View Mode 3')
-              | VM3
-        .dropdown.dropup.docs-options
-          button#toggleOptions.btn.btn-primary.btn-block.dropdown-toggle(type='button' data-toggle='dropdown' aria-expanded='true')
-            | Toggle Options
-            span.caret
-          ul.dropdown-menu(role='menu' aria-labelledby='toggleOptions')
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='responsive' checked='')
-                |                 responsive
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='restore' checked='')
-                |                 restore
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='checkCrossOrigin' checked='')
-                |                 checkCrossOrigin
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='checkOrientation' checked='')
-                |                 checkOrientation
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='modal' checked='')
-                |                 modal
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='guides' checked='')
-                |                 guides
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='center' checked='')
-                |                 center
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='highlight' checked='')
-                |                 highlight
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='background' checked='')
-                |                 background
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='autoCrop' checked='')
-                |                 autoCrop
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='movable' checked='')
-                |                 movable
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='rotatable' checked='')
-                |                 rotatable
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='scalable' checked='')
-                |                 scalable
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='zoomable' checked='')
-                |                 zoomable
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='zoomOnTouch' checked='')
-                |                 zoomOnTouch
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='zoomOnWheel' checked='')
-                |                 zoomOnWheel
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='cropBoxMovable' checked='')
-                |                 cropBoxMovable
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='cropBoxResizable' checked='')
-                |                 cropBoxResizable
-            li.dropdown-item
-              label.form-check-label
-                input.form-check-input(type='checkbox' name='toggleDragModeOnDblclick' checked='')
-                |                 toggleDragModeOnDblclick
-        // /.dropdown
-        a.btn.btn-success.btn-block(data-toggle='tooltip' href='https://fengyuanchen.github.io/photo-editor' title='An advanced example of Cropper.js') Photo Editor
-      // /.docs-toggles
+        input#cropRadio(type='radio' name='optionRadio' autocomplete='off')
+        span VÁGÁS
+        
+        input#filters(type='radio' name='optionRadio' autocomplete='off')
+        span SZŰRŐK
+      
+        input#flips(type='radio' name='optionRadio' autocomplete='off')
+        span FORGATÁS
+      
+        input#option2(type='radio' name='optionRadio' autocomplete='off')
+        span SZÍNKEZELÉS
+      
+        input#option2(type='radio' name='optionRadio' autocomplete='off')
+        span MENTÉS
+    .div1 
+      .wrapper
+        canvas#canvas
+        img#cropImg
+      .editor
+      
+        
+      
+        .filters#filtersId
+          .filter
+            label(for='brightness') Kontraszt
+            input#contrast(type="range" min='0' max='200' value='100')
+          .filter
+            label(for='blur') Homályosítás
+            input#blur(type='range'  min='0' max='5' value='0' step='0.1')
+          .filter
+            label(for='brightness') Fényerősség
+            input#brightness(type='range' min='0' max='200' value='100')
+          .filter
+            label(for='grayscale') Szürkeárnyalat
+            input#grayscale(type='range' min='0' max='100' value='0')
+          .filter
+            label(for='inversion') Inverz
+            input#inversion(type='range' min='0' max='100' value='0')
+          .filter
+            label(for='saturation') Telítettség
+            input#saturation(type='range' min='0' max='500' value='0')
+          .filter
+            label(for='opacity') Átlátszóság
+            input#opacity(type='range' min='0' max='100' value='100')
+          .filter
+            label(for='sepia') Szépia
+            input#sepia(type='range' min='0' max='100' value='0')
+        .flip-buttons#flipps
+          .flip-option 
+            input#no-flip(type='radio' name='flip' checked='')
+            label(for='no-flip') Nincs forgatás
+          .flip-option
+            input#flip-x(type='radio' name='flip')
+            label(for='flip-x') Horizontális forgatás
+          .flip-option
+            input#flip-y(type='radio' name='flip')
+            label(for='flip-y') Vertikális forgatás
+        // Shadow
+        label(for='arnyek') Árnyék
+        label(for='arnyek') Szín
+        input#coloris(type='text' data-coloris='')
+        .arnyekok
+          input#arnyek(type='range' min='-100' max='100' value='0')
+          input#arnyek1(type='range' min='-100' max='100' value='0')
+          input#arnyek2(type='range' min='0' max='100' value='13')
+        button#cropBtn(href='#' type='button' value="BTN") VÁGÁS
 
-  .wrapper
-    canvas#canvas
-  .editor
-    .filters
-      .filter
-        label(for='brightness') Kontraszt
-        input#contrast(type="range" min='0' max='200' value='100')
-      .filter
-        label(for='blur') Homályosítás
-        input#blur(type='range'  min='0' max='5' value='0' step='0.1')
-      .filter
-        label(for='brightness') Fényerősség
-        input#brightness(type='range' min='0' max='200' value='100')
-      .filter
-        label(for='grayscale') Szürkeárnyalat
-        input#grayscale(type='range' min='0' max='100' value='0')
-      .filter
-        label(for='inversion') Inverz
-        input#inversion(type='range' min='0' max='100' value='0')
-      .filter
-        label(for='saturation') Telítettség
-        input#saturation(type='range' min='0' max='500' value='0')
-      .filter
-        label(for='opacity') Átlátszóság
-        input#opacity(type='range' min='0' max='100' value='100')
-      .filter
-        label(for='sepia') Szépia
-        input#sepia(type='range' min='0' max='100' value='0')
-    .flip-buttons
-      .flip-option 
-        input#no-flip(type='radio' name='flip' checked='')
-        label(for='no-flip') Nincs forgatás
-      .flip-option
-        input#flip-x(type='radio' name='flip')
-        label(for='flip-x') Horizontális forgatás
-      .flip-option
-        input#flip-y(type='radio' name='flip')
-        label(for='flip-y') Vertikális forgatás
-    // Shadow
-    label(for='arnyek') Árnyék
-    label(for='arnyek') Szín
-    input#coloris(type='text' data-coloris='')
-    .arnyekok
-      input#arnyek(type='range' min='-100' max='100' value='0')
-      input#arnyek1(type='range' min='-100' max='100' value='0')
-      input#arnyek2(type='range' min='0' max='100' value='13')
-    button#cropBtn(href='#' type='button' value="BTN") VÁGÁS
-
-  .result
+    .result
+      img#output
     
-  
-    form(method='POST' action='/' enctype="multipart/form-data")
-      #form-group
-        input#imageFileInput(type='file' accept='Image/*' name='image' required)
-        label(for='imageFileInput') Válassz egy képet
-      br
-    
-      input#save(type='submit',value='Save')
-    button#download(href='#' type='file' download='' hidden)
-    label(for='download') Letöltés
-  input#probaBtn(value='proba' type='button')
-  input#input(type='text' value='')
+      form(method='POST' action='/' enctype="multipart/form-data")
+        #form-group
+          input#imageFileInput(type='file' accept='Image/*' name='image' required)
+          label(for='imageFileInput') Válassz egy képet
+        br
+      
+        input#save(type='submit',value='Save')
+      button#download(href='#' type='file' download='' hidden)
+      label(for='download') Letöltés
+    input#probaBtn(value='proba' type='button')
+    input#input(type='text' value='')
 
-  
+    
