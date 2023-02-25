@@ -8,7 +8,8 @@ const filters = document.getElementById("filters")
 const flipps = document.getElementById("flips")
 const cropImg = document.getElementById("cropImg")
 const croppp = document.querySelector(".croppp")
-
+const radioBtns = document.querySelectorAll(".radioBtn")
+const switchableContainers = document.querySelectorAll(".switch-container")
 
 const brightnessInput = document.querySelector("#brightness");
 const saturationInput = document.querySelector("#saturation");
@@ -18,7 +19,6 @@ const sepiaInput = document.querySelector("#sepia");
 const inversionInput = document.querySelector("#inversion");
 const grayscaleInput = document.querySelector("#grayscale");
 const opacityInput = document.querySelector("#opacity");
-
 
 /* let arnyek = document.getElementById("arnyek");
 let arnyek1 = document.getElementById("arnyek1");
@@ -126,6 +126,50 @@ fileInput.addEventListener("change", () => {
 
 resetSettings();
 
+
+function hideContainers() {
+  switchableContainers.forEach((c) => {
+    c.style.display = "none"
+  })
+}
+
+(function onPageLoad() {
+  hideContainers()
+})()
+
+radioBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    console.log('click')
+    hideContainers()
+    if(btn.value == 0) {
+      console.log("importálás")
+    }
+    if(btn.value == 1) {
+      console.log("vágás")
+      cropfunc()
+      document.getElementById('canvas').style.display="none";
+      let element = document.querySelector(".cropper-container")
+      element.style.display="block";
+    }
+    if(btn.value == 2) {
+      console.log("szűrők")
+      document.getElementById('filtersId').style.display="block";
+    }
+    if(btn.value == 3) {
+      console.log("forgatás")
+      document.getElementById('flipps').style.display="block";
+    }
+    if(btn.value == 4) {
+      console.log("színkezelés")
+    }
+    if(btn.value == 5) {
+      console.log("mentés")
+    }
+  })
+})
+
+
+
 // RADIO BTN
 
 function handleRadioClick() {
@@ -133,14 +177,12 @@ function handleRadioClick() {
   if (cropRadio.checked) {
     cropfunc()
     document.getElementById('canvas').style.display="none";
-    for (let element of document.getElementsByClassName("cropper-container")){
-      element.style.display="block";
-   }  
+    let element = document.querySelector(".cropper-container")
+      element.style.display="block";  
   } else {
     document.getElementById('canvas').style.display="block";
-    for (let element of document.getElementsByClassName("cropper-container")){
+    let element = document.querySelector(".cropper-container")
       element.style.display="none";
-   }  
   }
 
   if(filters.checked){
@@ -199,9 +241,9 @@ const noFlipBtn = document.querySelector("#no-flip");
 const flipXBtn = document.querySelector("#flip-x");
 const flipYBtn = document.querySelector("#flip-y");
 
-let radioBtns = document.querySelectorAll(".flip-option input[type='radio']");
-radioBtns.forEach( radioBtn => {
-    radioBtn.addEventListener("click", flipImage);
+let radioBtnsFlip = document.querySelectorAll(".flip-option input[type='radio']");
+radioBtnsFlip.forEach( btn => {
+    btn.addEventListener("click", flipImage);
 });
 
 function flipImage(){

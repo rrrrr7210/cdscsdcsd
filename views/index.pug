@@ -1,34 +1,32 @@
 extends layout
 
 block content
-  .container2
+  .container-wrap
     .btn-group#toggleButtons(data-toggle='buttons')
-        input#option(type='radio' name='optionRadio' autocomplete='off')
-        span IMPORTÁLÁS
+        //input#option(type='radio' name='optionRadio' autocomplete='off')
+        button.radioBtn.btn.btn-success(value="0") IMPORTÁLÁS
 
-        input#cropRadio(type='radio' name='optionRadio' autocomplete='off')
-        span VÁGÁS
+        //input#cropRadio(type='radio' name='optionRadio' autocomplete='off')
+        button.radioBtn.btn.btn-primary(value="1") VÁGÁS
         
-        input#filters(type='radio' name='optionRadio' autocomplete='off')
-        span SZŰRŐK
+        //input#filters(type='radio' name='optionRadio' autocomplete='off')
+        button.radioBtn.btn.btn-warning(value="2") SZŰRŐK
       
-        input#flips(type='radio' name='optionRadio' autocomplete='off')
-        span FORGATÁS
+        //input#flips(type='radio' name='optionRadio' autocomplete='off')
+        button.radioBtn.btn.btn-info(value="3") FORGATÁS
       
-        input#option2(type='radio' name='optionRadio' autocomplete='off')
-        span SZÍNKEZELÉS
+        //input#option2(type='radio' name='optionRadio' autocomplete='off')
+        button.radioBtn.btn.btn-danger(value="4") SZÍNKEZELÉS
       
-        input#option2(type='radio' name='optionRadio' autocomplete='off')
-        span MENTÉS
-    .div1 
-      .wrapper
+        //input#option3(type='radio' name='optionRadio' autocomplete='off')
+        button.radioBtn.btn.btn-success(value="5") MENTÉS
+    .flex-container 
+      .canvas-wrapper
         canvas#canvas
         img#cropImg
       .editor
       
-        
-      
-        .filters#filtersId
+        .switch-container.filters#filtersId
           .filter
             label(for='brightness') Kontraszt
             input#contrast(type="range" min='0' max='200' value='100')
@@ -53,7 +51,7 @@ block content
           .filter
             label(for='sepia') Szépia
             input#sepia(type='range' min='0' max='100' value='0')
-        .flip-buttons#flipps
+        .switch-container.flip-buttons#flipps
           .flip-option 
             input#no-flip(type='radio' name='flip' checked='')
             label(for='no-flip') Nincs forgatás
@@ -64,27 +62,31 @@ block content
             input#flip-y(type='radio' name='flip')
             label(for='flip-y') Vertikális forgatás
         // Shadow
-        label(for='arnyek') Árnyék
-        label(for='arnyek') Szín
-        input#coloris(type='text' data-coloris='')
-        .arnyekok
+        .switch-container.colors
+          label(for='arnyek') Árnyék
+          label(for='arnyek') Szín
+          input#coloris(type='text' data-coloris='')
+          .arnyekok
           input#arnyek(type='range' min='-100' max='100' value='0')
           input#arnyek1(type='range' min='-100' max='100' value='0')
           input#arnyek2(type='range' min='0' max='100' value='13')
-        button#cropBtn(href='#' type='button' value="BTN") VÁGÁS
+        .switch-container
+          button#cropBtn(href='#' type='button' value="BTN") VÁGÁS
 
-    .result
-      img#output
-    
+        .result
+        img#output
+      
+        .switch-container
+          input#save(type='submit',value='Save')
+          button#download(href='#' type='file' download='' hidden)
+          label(for='download') Letöltés
+
+    .upload-img
       form(method='POST' action='/' enctype="multipart/form-data")
         #form-group
           input#imageFileInput(type='file' accept='Image/*' name='image' required)
           label(for='imageFileInput') Válassz egy képet
-        br
-      
-        input#save(type='submit',value='Save')
-      button#download(href='#' type='file' download='' hidden)
-      label(for='download') Letöltés
+
     input#probaBtn(value='proba' type='button')
     input#input(type='text' value='')
 

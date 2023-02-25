@@ -285,24 +285,24 @@ body{
   font-family: "Rubik",sans-serif;
 }
 
-.wrapper{
+.canvas-wrapper{
   width: 50%;
-  min-height: 50vmin;
-  padding: 50px 30px;
-  background-color: #ffffff;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 50%;
-  left: 60%;
+  max-width: 800px;
   border-radius: 10px;
-  grid-template-columns: 5fr 7fr;
+  padding: 5rem;
+  flex: 2;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 canvas, img {
   width: 100%;
   height: 100%;
-  top:40%;
-  left:50%;
+  /* top:40%;
+  left:50%; */
 }
 
 .images-page {
@@ -328,15 +328,18 @@ canvas, img {
 }
 
 #filtersId{
-  display: none;
+
 }
 
 #flips{
-  display: none;
+  
 }
 
 .editor{
+  flex: 1;
+  padding-top: 1rem;
   min-height: 35vmin;
+  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -406,7 +409,7 @@ input[type="file"]{
 }
 
 @media screen and (max-width: 620px) {
-  .wrapper{
+  .canvas-wrapper{
       width: 95vw;
       grid-template-columns: 1fr;
       padding: 30px 20px;
@@ -439,8 +442,18 @@ input[type="file"]{
   font-family: 'Poppins',sans-serif;
 }
 
-.container2{
+.container-wrap {
+  height: 100%;
+}
+
+.container-wrap .btn-group {
   display: flex;
+  flex-direction: column;
+}
+
+.upload-img {
+  width: fit-content;
+  margin: 2rem auto;
 }
 
 .container{
@@ -449,6 +462,8 @@ input[type="file"]{
   padding: 10px;
   max-width: 1200px;
   width: 90%;
+  height: 80vh;
+  max-height: 80%;
   background: linear-gradient(135deg, #9b59b6, #71b7e6);
   padding: 25px 30px;
   border-radius: 5px;
@@ -470,6 +485,21 @@ input[type="file"]{
   width: 30px;
   border-radius: 5px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.flex-div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.flex-div .container-right {
+  width: 70%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.flex-div .container-left {
+  width: 30%;
 }
 
 .navbarContainer{
@@ -550,6 +580,14 @@ form input[type="radio"]{
   display: none;
 }
 
+.radioBtn {
+  margin-right: 2rem;
+}
+
+.radioBtn, .radioBtn:focus {
+  outline: unset;
+}
+
 form .button{
   height: 45px;
   margin: 35px 0
@@ -609,5 +647,12 @@ form .button input:hover{
 @media(max-width: 459px){
   .container .content .category{
     flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .container-wrap .btn-group {
+    flex-direction: row;
+    width: auto;
   }
 }
